@@ -10,7 +10,12 @@ if(['--help', '-h'].indexOf(process.argv[2]) > -1) {
 }
 else {
 	var directoryPath = process.argv[2] || './';
-
+	if (directoryPath !== './') {
+		shell.cd(directoryPath);
+		if (shell.error()) {
+			shell.exit(1);
+		}
+	}
 	if(isGitRepository()){
 		proceed();
 	}
@@ -22,12 +27,6 @@ else {
 
 // Functions 
 function isGitRepository() {
-	if (directoryPath !== './') {
-		shell.cd(directoryPath);
-		if (shell.error()) {
-			shell.exit(1);
-		}
-	}
 	var ls = shell.exec('ls -d .* ', {silent:true});
 	var dotFiles = ls.stdout.replace(/\r?\n|\r/g, ' ').trim().split(' ');
 	return dotFiles.indexOf('.git') > -1;
