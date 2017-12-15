@@ -24,6 +24,9 @@ else {
 function isGitRepository() {
 	if (directoryPath !== './') {
 		shell.cd(directoryPath);
+		if (shell.error()) {
+			shell.exit(1);
+		}
 	}
 	var ls = shell.exec('ls -d .* ', {silent:true});
 	var dotFiles = ls.stdout.replace(/\r?\n|\r/g, ' ').trim().split(' ');
@@ -34,25 +37,31 @@ function proceed() {
 	var editor = process.argv[3] || 'code';
 	var editorName = editor === 'code' ? 'VisualCode' : editor === 'st' ? 'SublimeText' : editor;
 	shell.echo('Ouverture des fichiers modifiés localement:'.cyan);
-	// var str = 'Editeur: ' + editorName;
 	shell.echo('Editeur: '.dim + editorName .bold)
-	shell.echo('Fichiers: '.dim);
-
+	
 	var ls = shell.exec('git diff --name-only develop', {silent:true});
 
-	// Remove all the displaying stuff from the string.
-	var list = ls.stdout.replace(/\r?\n|\r/g, ' ').trim().split(' ');
+	if (!ls.length) {
+		// No modified files found.
+		shell.echo('Your branch is up-to-date compare to  '.yellow + 'develop'.italic);
+		shell.echo('No files will be openned'.yellow);
+		openEditor(editor, './');
+	}
+	else {
+		// Remove all the displaying stuff from the string.
+		var list = ls.stdout.replace(/\r?\n|\r/g, ' ').trim().split(' ');
+		shell.echo('Fichiers:'.dim);
+		// Open the all project in editor.
+		openEditor(editor, './');
 
-	// Open the all project in editor.
-	openEditor(editor, directoryPath);
-
-	list.forEach(function(filePath) {
-	  // Open the needed files. (Don't need images and others ...)
-	  if (['.html', '.js', '.json'].indexOf(path.extname(filePath)) > -1) {
-	    shell.echo(filePath.green);
-	    openEditor(editor, (directoryPath + filePath))
-	  }
-	});
+		list.forEach(function(filePath) {
+		  // Open the needed files. (Don't need images and others ...)
+		  if (['.html', '.js', '.json'].indexOf(path.extname(filePath)) > -1) {
+		    shell.echo(filePath.green);
+		    openEditor(editor, filePath)
+		  }
+		});
+	}
 	shell.echo('Happy coding, see you soon!'.cyan);
 }
 
