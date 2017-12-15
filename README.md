@@ -19,4 +19,4 @@ Then, you'r ready to go in a second.
 Module build in NodeJs.
 
 For personnal reasons, I need to use this code on a Nodejs v0.10 machine.
-So some of the code is not up to date with current version of ecmascript.
+So some of the code is not up to date with the current version of ecmascript.
