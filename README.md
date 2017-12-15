@@ -1,7 +1,7 @@
 # Open-recent-files
 
 ## Warning
-This module is in _alpha_ version.
+This module is in __alpha__ version.
 Please don't use it yet ;)
 
 ## Definition
