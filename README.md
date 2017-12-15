@@ -7,8 +7,8 @@ Please don't use it yet ;)
 ## Definition
 ### Goals
 This module aims to make switching branches easier.
-__How ?__ 
 
+__How ?__ 
 - The program open your TextEditor (VsCode by default).
 - It makes a diff between your current branch and the develop branch.
 - If there is some differences, it means that your branch has been modified by you, so it opens those files for you.
