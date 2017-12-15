@@ -25,8 +25,7 @@ function isGitRepository() {
 	if (directoryPath !== './') {
 		shell.cd(directoryPath);
 	}
-	var command = 'ls -d .* ';
-	var ls = shell.exec(command, {silent:true});
+	var ls = shell.exec('ls -d .* ', {silent:true});
 	var dotFiles = ls.stdout.replace(/\r?\n|\r/g, ' ').trim().split(' ');
 	return dotFiles.indexOf('.git') > -1;
 }
