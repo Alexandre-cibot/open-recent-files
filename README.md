@@ -12,6 +12,7 @@ __How ?__
 - The program open your TextEditor (VsCode by default).
 - It makes a diff between your current branch and the develop branch.
 - If there is some differences, it means that your branch has been modified by you, so it opens those files for you.
+
 Then, you'r ready to go in a second.
 
 ### Tech
