@@ -7,11 +7,12 @@ Please don't use it yet ;)
 ## Definition
 ### Goals
 This module aims to make switching branches easier.
-How ? 
-- The program open your TextEditor (VsCode by default)
-- It make a diff between you current branch and the develop branch.
-- If there is some difference, it means that you'r branch has been modified by you, so it open these files for you
-Then, you'r ready to code in a second.
+__How ?__ 
+
+- The program open your TextEditor (VsCode by default).
+- It makes a diff between your current branch and the develop branch.
+- If there is some differences, it means that your branch has been modified by you, so it opens those files for you.
+Then, you'r ready to go in a second.
 
 ### Tech
 Module build in NodeJs.
